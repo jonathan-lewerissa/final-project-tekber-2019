@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1090338410666",
+    "firebase_url": "https://lp2-reservation-app.firebaseio.com",
+    "project_id": "lp2-reservation-app",
+    "storage_bucket": "lp2-reservation-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090338410666:android:0dcd2cff68f9d1202940d3",
+        "android_client_info": {
+          "package_name": "com.jonathanrl.reservasi_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090338410666-98uq8gvaqmqfo5e9b8bgansqamkv7lq0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jonathanrl.reservasi_app",
+            "certificate_hash": "fe4363cc42b652076cdc3f1b4ac34c0acb9866c3"
+          }
+        },
+        {
+          "client_id": "1090338410666-cvqsj8asa7fanhi2f065pb37e24oqbr1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4jCTBBTRiqik2Oc_9Ua5nhzlorapRIq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090338410666-cvqsj8asa7fanhi2f065pb37e24oqbr1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
