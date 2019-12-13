@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:reservasi_app/screens/add_reservation_screen.dart';
 import 'package:reservasi_app/screens/login_screen.dart';
-import 'package:reservasi_app/screens/notification_screen.dart';
 import 'package:reservasi_app/screens/reservations_screen.dart';
 import 'package:reservasi_app/screens/schedule_screen.dart';
-import 'package:reservasi_app/screens/setting_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../signin.dart';
 
@@ -16,21 +16,28 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
   FirebaseUser user;
+  bool checkAdmin = false;
 
   initUser() async {
     FirebaseUser currentUser = await _auth.currentUser();
-    setState(() {
-      user = currentUser;
-    });
+    Firestore.instance
+        .collection('users').document(currentUser.uid)
+        .get().then((DocumentSnapshot ds){
+          setState(() {
+            user = currentUser;
+            checkAdmin = ds.data['admin'] ?? false;
+            print(ds.data['admin']);
+          });
+        });
+
   }
 
   Drawer getNavDrawer(BuildContext context) {
     var headerChild = UserAccountsDrawerHeader(
       accountName: Text(user?.displayName ?? 'Login to continue'),
-      accountEmail: Text(user?.email ?? ''),
+      accountEmail: Text(user?.uid ?? ''),
     );
 
     var aboutChild = AboutListTile(
@@ -56,7 +63,6 @@ class HomeScreenState extends State<HomeScreen>
 
     var myNavChildren = [
       headerChild,
-      getNavItem(Icons.settings, "Settings", SettingScreen.routeName),
       getNavItem(Icons.person, "Login", LoginScreen.routeName),
       ListTile(
         leading: Icon(Icons.exit_to_app),
@@ -98,17 +104,26 @@ class HomeScreenState extends State<HomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.notifications),
-              onPressed: () {
-                Navigator.of(context).pushNamed(NotificationScreen.routeName);
-              })
-        ],
+        title: Text('LP2 Reservation'),
+//        actions: <Widget>[
+//          IconButton(
+//              icon: Icon(Icons.notifications),
+//              onPressed: () {
+//                Navigator.of(context).pushNamed(NotificationScreen.routeName);
+//              })
+//        ],
       ),
       body: TabBarView(
         children: <Widget>[ScheduleScreen(), ReservationScreen()],
         controller: controller,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            Navigator.of(context).pushNamed(AddReservationScreen.routeName);
+          });
+        },
+        child: Icon(Icons.add),
       ),
       bottomNavigationBar: Material(
         color: Colors.blue,

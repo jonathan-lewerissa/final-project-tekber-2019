@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reservasi_app/screens/add_reservation_screen.dart';
 import 'package:reservasi_app/screens/login_screen.dart';
 import 'package:reservasi_app/screens/notification_screen.dart';
 import 'package:reservasi_app/screens/reservations_screen.dart';
@@ -11,4 +12,5 @@ final routes = <String, WidgetBuilder> {
   SettingScreen.routeName: (BuildContext context) => SettingScreen(),
   NotificationScreen.routeName: (BuildContext context) => NotificationScreen(),
   LoginScreen.routeName: (BuildContext context) => LoginScreen(),
+  AddReservationScreen.routeName: (BuildContext context) => AddReservationScreen(),
 };

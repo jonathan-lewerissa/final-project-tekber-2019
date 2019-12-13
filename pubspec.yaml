@@ -27,6 +27,8 @@ dependencies:
   google_sign_in: ^4.0.4
   http: ^0.12.0+2
   table_calendar: ^2.2.1
+  cloud_firestore: ^0.12.7+1
+  datetime_picker_formfield: ^0.4.3
 
 dev_dependencies:
   flutter_test:
